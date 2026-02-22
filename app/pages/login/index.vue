@@ -1,9 +1,7 @@
 <script setup lang="ts">
-definePageMeta({
-  layout: 'login',
-})
+definePageMeta({ layout: 'login' })
 
-const supabase = useSupabase()
+const supabase = useSupabaseClient()
 
 const loginWithGoogle = async () => {
   const { error } = await supabase.auth.signInWithOAuth({

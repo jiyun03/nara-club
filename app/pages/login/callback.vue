@@ -1,26 +1,22 @@
 <script setup lang="ts">
-definePageMeta({
-  layout: 'login',
-})
+definePageMeta({ layout: 'login' })
 
-const supabase = useSupabase()
+const user = useSupabaseUser()
 
-onMounted(async () => {
-  const {
-    data: { session },
-  } = await supabase.auth.getSession()
-
-  if (session) {
-    const email = session.user.email ?? ''
-    if (!email.endsWith('@naraspace.com')) {
-      await supabase.auth.signOut()
-      return navigateTo('/login')
+watch(
+  user,
+  () => {
+    if (user.value) {
+      const email = user.value.email ?? ''
+      if (!email.endsWith('@naraspace.com')) {
+        useSupabaseClient().auth.signOut()
+        return navigateTo('/login')
+      }
+      return navigateTo('/')
     }
-    return navigateTo('/')
-  }
-
-  navigateTo('/login')
-})
+  },
+  { immediate: true },
+)
 </script>
 
 <template>
