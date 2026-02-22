@@ -24,5 +24,5 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div>로그인 처리 중...</div>
+  <Button class="w-full" variant="outline" disabled>로그인 처리 중...</Button>
 </template>

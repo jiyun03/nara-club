@@ -17,8 +17,5 @@ const loginWithGoogle = async () => {
 </script>
 
 <template>
-  <div>
-    <h1>로그인</h1>
-    <button @click="loginWithGoogle">Google로 로그인</button>
-  </div>
+  <Button class="w-full" variant="outline" @click="loginWithGoogle">Google 로그인</Button>
 </template>

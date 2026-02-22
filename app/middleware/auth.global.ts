@@ -1,4 +1,6 @@
 export default defineNuxtRouteMiddleware(async (to) => {
+  if (import.meta.server) return // 서버 호출 검사
+
   const { $supabase } = useNuxtApp()
   const {
     data: { session },
